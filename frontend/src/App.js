@@ -9,6 +9,7 @@ import {useDispatch} from "react-redux"
 import { getAuthUser } from './redux/actions/userAction';
 import { useEffect } from 'react';
 import ConfList from './components/pages/ConfList';
+import ArticleList from './components/pages/ArticleList';
 const App = () => {
  
 const dispatch=useDispatch()
@@ -22,6 +23,8 @@ useEffect(()=>dispatch(getAuthUser()),[])
   <Route path="/"  element={<Home />}/>
   <Route  path="/dashboard" element={<DashBoard />}/>
   <Route path="/ConferanceList" element={<ConfList />}/>
+  <Route path="/ArticleList" element={<ArticleList />}/>
+
 </Routes>
     </div>
   );

@@ -1,17 +1,17 @@
-import { GET_CONFERANCE } from "../actionType"
+import { GET_ARTICLE} from "../actionType"
 import axios from "axios"
 
 // fecth
-export const getConferance=()=>async(dispatch)=>{
+export const getArticle=()=>async(dispatch)=>{
     try{
         const option={
             headers:{
                 'authorization':localStorage.getItem('token'),
             },
         }
-        const res=await axios.get("/api/conference/conferences",option)
+        const res=await axios.get("/api/article/articles",option)
         dispatch({
-            type:GET_CONFERANCE,
+            type:GET_ARTICLE,
             payload:res.data
         })
     }
@@ -21,14 +21,14 @@ export const getConferance=()=>async(dispatch)=>{
 }
 
 // Add
-export const addconferance=(newconferance)=>async(dispatch)=>{
+export const addarticle=(newarticle)=>async(dispatch)=>{
     try{
         const config={
             headers:{"authorization":localStorage.getItem("token")
         }}
-        const res=await axios.post("/api/conference/addconference",newconferance,config)
+        const res=await axios.post("/api/article/addarticle",newarticle,config)
         console.log(res.data,"azerty")
-        dispatch(getConferance())
+        dispatch(getArticle())
     }
     catch(error){
         console.log(error)
@@ -36,13 +36,13 @@ export const addconferance=(newconferance)=>async(dispatch)=>{
 }
 
     //delete
-    export const deleteconferance=(id)=>(dispatch)=>{
+    export const deletearticle=(id)=>(dispatch)=>{
         try{
             const config={
                 headers:{"authorization":localStorage.getItem("token")
             }}
-        axios.delete(`/api/conference/delete/${id}`,config)
-        .then((res)=>dispatch(getConferance()))
+        axios.delete(`/api/article/delete/${id}`,config)
+        .then((res)=>dispatch(getArticle()))
         .catch((err)=>console.log(err))
     }
     catch(error){
@@ -53,16 +53,16 @@ export const addconferance=(newconferance)=>async(dispatch)=>{
        
 
     //edit
-    export const editconferance=(idconferance,editedconferance)=>(dispatch)=>{
+    export const editarticle=(idarticle,editedarticle)=>(dispatch)=>{
         try{
             const config={
                 headers:{"authorization":localStorage.getItem("token")
             }}
             console.log("ici c paris")
-        axios.put(`/api/conference/editconference/${idconferance}`,editedconferance,config)
+        axios.put(`/api/article/editarticle/${idarticle}`,editedarticle,config)
         .then((res)=> {
             console.log("haha")
-            dispatch(getConferance())
+            dispatch(getArticle())
         })
         .catch((err)=>console.log(err))
     }

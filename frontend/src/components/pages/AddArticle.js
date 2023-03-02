@@ -14,13 +14,13 @@ import {
 
 //import { registerUser } from '../../redux/actions/userAction';
 import {useNavigate} from "react-router-dom"
-import { addconferance } from '../../redux/actions/confAction';
+import { addarticle } from '../../redux/actions/articleAction';
 
-function AddConf() {
+function AddArticle() {
   const [modal,setModal]=useState(false)
-  const[startDate,setstartDate]=useState("")
-  const[endDate,setendDate]=useState("")
-  const[name,setname]=useState("")
+  const[depotDate,setdepotDate]=useState("")
+  
+  const[title,settitle]=useState("")
   const[desc,setDesc]=useState("")
 
 
@@ -35,64 +35,55 @@ const add=()=>{
    
     desc:desc,
 
-    startDate: startDate,
-    endDate:endDate,
+    depotDate: depotDate,
+    
 
-    name: name
+    title: title
 
   }
   console.log(data,"jj")
 
 
   
-  dispatch(addconferance(data))
+  dispatch(addarticle(data))
   setModal(!modal)
-  setstartDate("")
-  setendDate("")
-  setname("")
+  setdepotDate("")
+  
+  settitle("")
   setDesc("")
-  navigate("/ConferanceList")
+  navigate("/ArticleList")
 }
 
    
   return (
     <div style={{ padding: '0 15px' }}>
     <NavLink  href="#" onClick={toggle}>
-      Add New Conferance
+      Add New Article
     </NavLink>
     <Modal  isOpen={modal}>
       <ModalHeader>Add</ModalHeader>
       <ModalBody>
         <Form>
           <FormGroup>
-            <Label for="startDate">startDate</Label>
+            <Label for="depotDate">depotDate</Label>
             <Input
               type="date"
-     onChange={(event)=>setstartDate(event.target.value)}
+     onChange={(event)=>setdepotDate(event.target.value)}
      
               name="name"
               id="name"
-              placeholder="startDate"
+              placeholder="depotDate"
               className="mb-3"
           
             />
-            <Label for="endDate">endDate</Label>
-            <Input
-              type="date"
-              onChange={(event)=>setendDate(event.target.value)}
-              name="lastName"
-              id="lastName"
-              placeholder="endDate"
-              className="mb-3"
-          
-            />
-            <Label for="name">name</Label>
+           
+            <Label for="title">title</Label>
             <Input
               type="text"
-              onChange={(event)=>setname(event.target.value)}
+              onChange={(event)=>settitle(event.target.value)}
               name="email"
               id="email"s
-              placeholder="name"
+              placeholder="title"
        
             />
             <Label for="desc">Desc</Label>
@@ -131,4 +122,4 @@ const add=()=>{
   )
 }
 
-export default AddConf
+export default AddArticle

@@ -145,6 +145,9 @@ onClick={register}
             >
               Register
             </Button>
+            <Button color="secondary" onClick={toggle} >
+          Cancel
+        </Button>
          
         </Form>
       </ModalBody>

@@ -78,8 +78,24 @@ router.get("/user",isAuth,(req,res)=>{
     res.send({user:req.user})
     })
     
+
+    //get all users
+    router.get("/users",isAuth,isAdmin,async(req,res)=>{
     
+        const users=await User.find()
+        res.send({msg:"all users",users})
+
+    })
     
-    
+    //editAccount
+    router.put("/editAcount/:iduser",isAuth,async(req,res)=>{
+        const iduser = req.params.iduser;
+        const user = await User.findByIdAndUpdate(iduser, req.body, { new: true })
+        return res.json(user)
+    })
+
+
+
+
 
 module.exports = router

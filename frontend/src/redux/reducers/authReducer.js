@@ -1,5 +1,5 @@
   
-import{GET_AUTH_USER,LOGOUT_USER} from "../actionType.js"
+import{GET_ALL_USERS, GET_AUTH_USER,LOGOUT_USER} from "../actionType.js"
 
 
 const initState={
@@ -7,6 +7,7 @@ const initState={
     user:null,
     isAuth:false,
     msg:null,
+    users:null,
 }
 export const authReducer=(state=initState,action)=>{
     switch(action.type){
@@ -37,6 +38,11 @@ export const authReducer=(state=initState,action)=>{
 
 
                     }
+                    case GET_ALL_USERS:
+                        return{
+                            ...state,
+                            users:action.payload.users
+                        }
               
                 default :
                 return state

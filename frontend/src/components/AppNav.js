@@ -16,6 +16,7 @@ import RegisterModal from './auth/RegisterModal'
 import{useSelector,useDispatch} from "react-redux";
 import { logoutUser } from '../redux/actions/userAction';
 import {useNavigate} from "react-router-dom"
+import "../styles.css"
 
 function AppNav() {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +33,13 @@ function AppNav() {
     const conf=()=>{
       navigate("/ConferanceList")
     }
+    const article=()=>{
+      navigate("/ArticleList")
+    }
   
     const authLinks = (
-        <>
+      <div className='navbar-elem'>
+
           <NavItem>
             <Link to="/dashboard">
               <span className="navbar-text mr-3">
@@ -42,30 +47,41 @@ function AppNav() {
               </span>
             </Link>
           </NavItem>
+
+
           <NavLink href="#" onClick={logoutt}>
             Logout
           </NavLink>
+
           <NavLink href="#" onClick={conf}>
             Conference
           </NavLink>
-        </>
+
+          <NavLink href="#" onClick={article}>
+            Article
+          </NavLink>
+          </div>
+
       );
     
       const guestLinks = (
         <>
           <NavItem>
-<RegisterModal/>
+        <RegisterModal/>
           </NavItem>
           <NavItem>
- <LoginModal/>
+        <LoginModal/>
           </NavItem>
-        </>
+          </>
       );
-  return (
+  return ( 
+
+
+
     <div>
-    <Navbar color="dark" dark expand="sm" className="mb-5">
+    <Navbar color="white" light expand="sm" className="mb-5"  >
       <Container>
-        <NavbarBrand href="/">Home</NavbarBrand>
+        <NavbarBrand style={{display:"flex",justifyContent:"center"}} href="/">Home</NavbarBrand>
         <NavbarToggler  onClick={toggle}/>
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
